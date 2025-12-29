@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="mb-4">
+    <h1>{{ event.title }}</h1>
+    <p class="text-muted">{{ event.year }}</p>
+
+    {% if event.description %}
+        <p>{{ event.description }}</p>
+    {% endif %}
+</div>
+
+<hr style="border-top: 2px solid #e0c68f;">
+
+<div class="row mt-4">
+    {% for photo in photos %}
+    <div class="col-6 col-md-3 mb-3 photo-card">
+        <img
+            src="{{ photo.image.url }}"
+            class="img-fluid"
+            onclick="openLightbox('{{ photo.image.url }}')">
+    </div>
+    {% empty %}
+        <p>No photos available for this event.</p>
+    {% endfor %}
+</div>
+
+<div class="mt-4">
+    <a href="/gallery/" class="btn btn-outline-dark">
+        ← Back to Gallery
+    </a>
+</div>
+
+{% endblock %}

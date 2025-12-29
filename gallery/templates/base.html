@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Phombo Awajung Family</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #fdfaf6;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+        .navbar {
+            background-color: #5b1d1d !important;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            margin-top: 120px;
+            padding: 30px 0;
+            background: #3d1212;
+            color: #e0c68f;
+            text-align: center;
+            font-size: 14px;
+            letter-spacing: 0.4px;
+        }
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            background-image: url("/static/images/hero.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            padding: 55px 65px;
+            border-radius: 26px;
+            max-width: 1000px;
+            width: 92%;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .hero-pill-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .hero-pill {
+            background: rgba(255, 255, 255, 0.18);
+            color: #f5ebcf;
+            padding: 14px 30px;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+
+        .hero-stats {
+            font-size: 1.05rem;
+            color: #f0e6c8;
+            letter-spacing: 0.4px;
+        }
+
+        /* =========================
+           CONTENT STYLES
+        ========================= */
+        h1, h2, h3 {
+            color: #5b1d1d;
+        }
+
+        section.bg-light {
+            background-color: #f8f5f0 !important;
+        }
+
+        .card {
+            border-radius: 18px;
+        }
+
+        select.form-select {
+            border: 2px solid #e0c68f;
+        }
+
+        .photo-card img {
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #e0c68f;
+            transition: transform 0.25s ease;
+            cursor: pointer;
+        }
+
+        .photo-card img:hover {
+            transform: scale(1.04);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 60vh;
+            }
+
+            .hero-title {
+                font-size: 2.3rem;
+            }
+
+            .hero-pill {
+                font-size: 0.95rem;
+                padding: 12px 22px;
+            }
+        }
+        /* =========================
+        GLOBAL SPACING FIXES
+        ========================= */
+        main.container {
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+
+        .hero-section + main.container {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Phombo Awajung Family</a>
+        <div>
+            <a class="text-light me-3 text-decoration-none" href="/">Home</a>
+            <a class="text-light me-3 text-decoration-none" href="/gallery/">Gallery</a>
+            <a class="text-light text-decoration-none" href="/about/">About</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO BLOCK -->
+{% block hero %}{% endblock %}
+
+<!-- MAIN CONTENT -->
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+    © Phombo Awajung Community · Preserving Limbu Heritage
+</footer>
+
+<!-- LIGHTBOX MODAL -->
+<div class="modal fade" id="lightboxModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-body text-center">
+                <img id="lightboxImage" src="" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function openLightbox(imageUrl) {
+        const img = document.getElementById("lightboxImage");
+        img.src = imageUrl;
+
+        const modal = new bootstrap.Modal(
+            document.getElementById('lightboxModal')
+        );
+        modal.show();
+    }
+</script>
+
+</body>
+</html>

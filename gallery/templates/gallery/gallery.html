@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="get" class="mb-4">
+    <div class="row justify-content-end">
+        <div class="col-md-3">
+            <select name="year" class="form-select" onchange="this.form.submit()">
+                <option value="">All Years</option>
+                {% for y in years %}
+                    <option value="{{ y }}" {% if selected_year == y|stringformat:"s" %}selected{% endif %}>
+                        {{ y }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</form>
+
+<h1 class="text-center mb-3">Phombo Awajung Family</h1>
+<p class="text-center text-muted mb-5">
+    A Limbu community archive preserving our ancestry, culture, and unity
+</p>
+
+{% for event in events %}
+<div class="mb-5">
+    <h3>
+        <a href="/event/{{ event.id }}/" class="text-decoration-none">
+            {{ event.title }} ({{ event.year }})
+        </a>
+    </h3>
+
+    <hr style="border-top: 2px solid #e0c68f; width: 120px;">
+    <p>{{ event.description }}</p>
+
+    <div class="row">
+        {% for photo in event.photos.all %}
+        <div class="col-6 col-md-3 mb-3 photo-card">
+            <img 
+                src="{{ photo.image.url }}" 
+                class="img-fluid"
+                onclick="openLightbox('{{ photo.image.url }}')">
+
+            {% if photo.contributor %}
+                <small class="text-muted d-block text-center mt-1">
+                    Shared by {{ photo.contributor }}
+                </small>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
