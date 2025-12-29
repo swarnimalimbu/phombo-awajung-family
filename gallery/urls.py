@@ -7,6 +7,5 @@ urlpatterns = [
     path('gallery/', gallery_view, name='gallery'),
     path('event/<int:event_id>/', event_detail_view, name='event_detail'),
     path('about/', about_view, name='about'),
-    path("create-admin/", create_admin_once),
 
 ]
