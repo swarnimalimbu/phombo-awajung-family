@@ -35,3 +35,25 @@ def event_detail_view(request, event_id):
         'event': event,
         'photos': photos
     })
+
+import os
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.conf import settings
+
+def create_admin_once(request):
+    token = request.GET.get("token")
+
+    if token != os.environ.get("ADMIN_SETUP_TOKEN"):
+        return HttpResponse("Unauthorized", status=401)
+
+    if User.objects.filter(username="admin").exists():
+        return HttpResponse("Admin already exists")
+
+    User.objects.create_superuser(
+        username="admin",
+        email="admin@phomboawajung.com",
+        password="ChangeThisPassword123"
+    )
+
+    return HttpResponse("Admin created successfully")
