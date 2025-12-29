@@ -1,6 +1,5 @@
 from django.urls import path
 from .views import home_view, gallery_view, about_view,event_detail_view
-from .views import create_admin_once
 
 urlpatterns = [
     path('', home_view, name='home'),
